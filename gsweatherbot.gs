@@ -36,13 +36,13 @@ function doPost(e) {
     } else {
       sendText = "Please enter the /city command first to set the city.";
     }
+  } else if (text === "/start") {
+    sendText = "Type /weather to get the weather, or set your city using the /city command.";
   } else if (text === "/city") {
     sendText = "Please enter the name of your city:";
-  } else if (text.length > 1 && text !== "/weather" && text !== "/city") {
+  } else if (text.length > 1 && text !== "/start" && text !== "/weather" && text !== "/city") {
     cityDataProperty.setProperty(from, text); // Set user's city
     sendText = "City installed successfully!";
-  } else {
-    sendText = "Type /weather to get the weather, or set your city using the /city command.";
   }
 
   var url = apiUrl + "/sendmessage?parse_mode=HTML&chat_id=" + from + "&text=" + encodeURIComponent(sendText);
